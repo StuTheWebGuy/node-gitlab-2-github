@@ -9,6 +9,7 @@ Differences include:
 - If a source or target branch of a merge request doesn't exist, the merge request will not be imported and a GitHub issue **will not be created either**.
 - `gitlab merge request` label is never created in GitHub if `settings.addGitlabMergeRequestLabel === false`, as the above difference means it will never be used.
 - `settings.*.ts` is added to `.gitignore`, allowing multiple settings files for each project to be saved locally (following the naming convention `settings.PROJECT_NAME.ts`).
+- Use `make use NAME=<PROJECT_NAME>` to symlink `settings.ts` to the config file you want to target.
 - In the `usermap`, if a GitHub username starts with an exclamation mark (`!`) it will not be used for issue assignment, and won't create a `@mention` in comments and descriptions. This is useful for GitLab users who don't have an equivalent GitHub account.
 - In the `usermap`, GitHub usernames must be prepended with `@` - the script won't insert this character automatically.
 

@@ -15,3 +15,11 @@ docker-run-bind:
 	docker run \
 		--mount type=bind,source="$(LOCAL_PWD)/settings.ts",target="/app/settings.ts",readonly \
 		$(CONTAINER_IMAGE):$(CONTAINER_TAG)
+
+.PHONY: use
+use: ## Switch settings files
+	ln -sf settings.$(NAME).ts settings.ts
+
+.PHONY: run
+run: ## Run the script
+	npm run start
