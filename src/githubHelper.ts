@@ -368,8 +368,8 @@ export class GithubHelper {
       let username: string = assignee.username as string;
       if (username === settings.github.username) {
         assignees.push(settings.github.username);
-      } else if (settings.usermap && settings.usermap[username]) {
-        assignees.push(settings.usermap[username]);
+      } else if (settings.usermap && settings.usermap[username] && !settings.usermap[username].startsWith('!')) {
+        assignees.push(settings.usermap[username].slice(1));
       }
     }
     return assignees;
@@ -838,9 +838,9 @@ export class GithubHelper {
           return Promise.resolve({ data: null });
         } else {
           console.error(
-            `Merge request ${mergeRequest.iid} (target branch '${mergeRequest.target_branch}' does not exist => cannot migrate pull request, creating an issue instead.`
+            `Merge request ${mergeRequest.iid} (target branch '${mergeRequest.target_branch}' does not exist => cannot migrate pull request, skipping.`
           );
-          canCreate = false;
+          return Promise.resolve({ data: null });
         }
       }
     }
@@ -865,7 +865,7 @@ export class GithubHelper {
           console.error(
             `Pull request #${mergeRequest.iid} (source branch '${mergeRequest.source_branch}' does not exist => cannot migrate pull request, creating an issue instead.`
           );
-          canCreate = false;
+          return Promise.resolve({ data: null });
         }
       }
     }
@@ -1163,7 +1163,7 @@ export class GithubHelper {
       reString = '@' + Object.keys(settings.usermap).join('|@');
       str = str.replace(
         new RegExp(reString, 'g'),
-        match => '@' + settings.usermap[match.substring(1)]
+        match => settings.usermap[match.substring(1)]
       );
     }
 

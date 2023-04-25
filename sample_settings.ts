@@ -48,6 +48,7 @@ export default {
   usePlaceholderIssuesForMissingIssues: true,
   useReplacementIssuesForCreationFails: true,
   useIssuesForAllMergeRequests: false,
+  addGitlabMergeRequestLabel: false,
   filterByLabel: null,
   trimOversizedLabelDescriptions: false,
   skipMergeRequestStates: [],

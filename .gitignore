@@ -29,6 +29,7 @@ node_modules
 # ignore settings.js, settings.ts
 settings.js
 settings.ts
+settings.*.ts
 
 # ignore the log file
 merge-requests.json

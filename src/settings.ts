@@ -24,6 +24,7 @@ export default interface Settings {
   usePlaceholderIssuesForMissingIssues: boolean;
   useReplacementIssuesForCreationFails: boolean;
   useIssuesForAllMergeRequests: boolean;
+  addGitlabMergeRequestLabel: boolean;
   filterByLabel?: string;
   trimOversizedLabelDescriptions: boolean;
   skipMergeRequestStates: string[];

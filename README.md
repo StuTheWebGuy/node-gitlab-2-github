@@ -1,5 +1,17 @@
 # node-gitlab-2-github
 
+## This is a fork!
+
+This script has been edited to meet my own personal requirements - though they might help you too.
+
+Differences include:
+
+- If a source or target branch of a merge request doesn't exist, the merge request will not be imported and a GitHub issue **will not be created either**.
+- `gitlab merge request` label is never created in GitHub if `settings.addGitlabMergeRequestLabel === false`, as the above difference means it will never be used.
+- `settings.*.ts` is added to `.gitignore`, allowing multiple settings files for each project to be saved locally (following the naming convention `settings.PROJECT_NAME.ts`).
+- In the `usermap`, if a GitHub username starts with an exclamation mark (`!`) it will not be used for issue assignment, and won't create a `@mention` in comments and descriptions. This is useful for GitLab users who don't have an equivalent GitHub account.
+- In the `usermap`, GitHub usernames must be prepended with `@` - the script won't insert this character automatically.
+
 ## Install
 
 1. You need nodejs and npm installed
@@ -42,7 +54,7 @@ The user must be a member of the project you want to copy. This user must be the
 
 ### Docker
 
-If you don't have Node.js installed in your local environment and don't want to install it you can use the Dockerized approach. 
+If you don't have Node.js installed in your local environment and don't want to install it you can use the Dockerized approach.
 
 1. Make sure that you have [Docker](https://docs.docker.com/engine/install/) installed in your computer. You can test running `docker version` in the terminal.
 1. `cp sample_settings.ts settings.ts`
